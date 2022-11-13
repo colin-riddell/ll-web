@@ -1,0 +1,24 @@
+ARG imageName
+
+#from previous ci build image
+FROM $imageName AS builder
+
+#copy relevant stuff for runtime image
+FROM node:14-alpine AS runner
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+# COPY --from=builder /app/server-preload.js ./server-preload.js
+# COPY --from=builder /app/logging/ ./logging/
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+RUN chown -R nextjs:nodejs /.next
+USER nextjs
+
+CMD node node_modules/next/dist/bin/next start
+

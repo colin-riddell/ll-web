@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+nav {
+  @apply 
+    flex
+    sticky
+    top-0
+    z-50
+    items-center 
+    justify-between 
+    flex-wrap 
+    bg-tccblack 
+    p-6 pr-24
+}
+
+.new-nav {
+  @apply 
+  flex
+  sticky
+  top-0
+  z-50
+  items-center 
+  justify-between 
+  flex-wrap 
+  p-6 pr-24
+}
+
+html {
+  @apply font-sans bg-gray-100
+}
+
+.main-cta {
+  @apply inline-block
+   text-sm
+   px-4 py-2 
+   leading-none 
+   border rounded 
+   text-tccgreen 
+   border-tccgreen 
+   hover:border-transparent hover:text-slate-600 hover:bg-white
+   mt-4 
+   lg:mt-0
+}
+
+.second-cta {
+  @apply inline-block
+   text-sm
+   px-4 py-2 
+   leading-none 
+   border rounded 
+   text-white
+   border-white 
+   hover:border-transparent hover:text-slate-600 hover:bg-white
+   mt-4 
+   lg:mt-0
+}
+
+.main-cta-filled {
+  @apply 
+  bg-tccgreen
+  text-slate-600
+
+  inline-block
+   text-sm
+   px-4 py-2 
+   leading-none 
+   border rounded 
+   text-slate-600
+   border-white 
+   hover:border-tccgreen hover:text-slate-600 hover:bg-white
+   mt-4 
+   lg:mt-0
+  
+}
+
+.sidebar-icon {
+  @apply relative flex items-center justify-center
+    h-12 w-12 mt-2 mb-2 mx-auto shadow-lg
+    bg-gray-800  text-green-500
+    hover:bg-green-600 hover:text-white
+    rounded-3xl hover:rounded-xl
+    transition-all duration-300 ease-linear
+    cursor-pointer;
+}
+
+
+
