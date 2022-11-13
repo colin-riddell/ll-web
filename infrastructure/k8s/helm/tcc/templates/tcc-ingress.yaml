@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Values.ingress.name }}"
+  namespace: "{{ .Values.namespace }}"
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ .Values.issuer.name }}"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = 'www.thecodercareer.com' ) {
+        rewrite ^ https://thecodercareer.com$request_uri permanent;
+      }
+      if ($host = 'dev.thecodercareer.com') {
+        rewrite ^/robots.txt /robots-staging.txt last;
+      }
+spec:
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  rules:
+  {{- range $v := .Values.ingress.rules }}
+    - host: {{ $v.host.name }}
+      http:
+        paths:
+  {{- range $p := $v.host.paths }}
+          - path: {{ $p.path.path }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $p.path.name }}
+                port:
+                  number: {{ $p.path.port }}
+  {{- end }}
+
+  {{- end }}
+
+  tls:
+    - hosts:
+      {{- range $v := .Values.ingress.rules }}
+      - {{ $v.host.name }}
+      {{- end }}
+      secretName: "{{ .Values.issuer.name }}"
+

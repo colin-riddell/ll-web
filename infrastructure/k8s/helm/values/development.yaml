@@ -1,0 +1,58 @@
+namespace: dev
+
+earlbot:
+    name: earl-bot
+    deployment:
+        image: "registry.digitalocean.com/tcc-registry/earl-bot"
+        tag: "0.0.1"
+        replicas: 1
+    env:
+        someVar: "some-value?withquotes?"
+    encEnv:
+        bot_token: AgCbZo7WYzdnwLyedUKj4J+GdPVZElOThYVjCnK41rYecKjTVKQgYov2Li/3b+FpCXMKcCD0M4045QMtNIeQB57Ad7oDbFk7kMeN1SIWpSkRXy450kD4d9RradymWE1D/9RUYLl5kVJFCgjHoVawLYGE4eOGrXQO1pohLpFs7SEQ9qx/oAakaq7gJnR081NlFOexnCQFN5hCcRNwyAIF4spGC7gpy0CcLtbzPOV7ivXplGuZPgTZDKF3gDQvW1VczPdLaSlB43RruG0GIN4esO06hPVgsMSQASa0TDQhvTFWVgQwInqDZR9Ko1Wredwm7UkASWuQ9f1X32AM3+S83AXi1GUHzi+XTt3H6pNs2TyfuX7rc++dt2WbiPY4+NlTw4piXxwbrI3aMwHYOPd0CZWLXn4rDqBxar1QuQ7gDD2aZaiCWnyyU1Aj6PiHRklSyUVuk+kpjqtCG+TfwTZN4LvR+b4fKzDeOG+ir9koTxU5zJLB+0vCPGFKQ/PTrEsOM7H0drI88pWeXxmp1wZs/bczCM/z7l3EDNUk+aY9IaPs1C6auk/fbi9y0to6rtbSRFWv4A7mZ/AaSyCNjUcGRDxEUw8swXSWpbqv/oBUE9bKsV0R+EO1qgtJTe2n/kiEesr+dEWQlMMWZx7sFCtgReWdue/9P5c7lS62naEy+QP3TGpVFz8S0qTo6ABsOj6mFqkKzpSzg1ztt48DkoZ2c3T/LNrWx/PYFRC8IQunap287iTEyfGLHk/KRWlej+gen40NzOQTubif1lzghYvIaaB46H0HqLSQs/k=
+
+webportal:
+    name: web-portal
+    deployment:
+        image: "registry.digitalocean.com/tcc-registry/web-portal"
+        tag: "0.0.4"
+        replicas: 1
+    env:
+        auth0ClientId: ylFeCwqnvwMjfSL58yoOrgKE75Q34YjY
+        auth0BaseUrl: https://dev.thecodercareer.com
+        auth0IssuerBaseUrl: https://thecodercareer.eu.auth0.com
+        mongodbUsername: doadmin
+        mongodbUri: private-mongodb-dev-83c5c7a8.mongo.ondigitalocean.com/admin?replicaSet=mongodb-dev&tls=true&authSource=admin
+        mongodbDb: tcc
+    # encrypt secrets with: ./encrypt-secret.sh asecret web-portal-secrets dev
+    encEnv:
+        auth0ClientSecret: AgCeF2p2opJfEQzsbw9K7UIh5IU9oTZWhI7NxHn8KskzJJDURWt0CAscQiFMQuZ3eJUKRuIBwUSzCJ75KzXZNdsx39orz7+R1ymU7bzbEJgyHN/O8WK/OgEkEVPLNf2E3N4g/NB4q2mbAdO3HeYe67LdybFVR+ZmMgVLXdoVcckmcKTW+XtQ6G6YBPbtZB7f6jWEtn2t14OhBZ7u6u5kEXHxJAoA3kwC8ZcOxaeNCzWhmxZtckJCYsZUI/klJdO2dTe8803uVN7gOYW99I5HiJ+IPOAOfMBA4I+1wwc6SzcHipPOaC0paDNkUdmlJeRK1YO6Vpa04oGgxBuNLZTXQB8K9tF2C+4c8bzzTlSGVaEG2VLcYmibTwkN1qrZ1FlrODtEnMxLVhR+WZW2BJH/srJ7FOAZtBCXkhih/JGyL3faKu46AhqpIGcSZ7Zf1gm6cdM7YMN4S5fNCE8v4vi7DBTYkWSyWUXLTeTqFT7DjBaXX0iu6M7kqcmF13k5pjHGmPJTZeRhCuc3Ka5DdruZ+hjWHmicmChi9+QQIKA5g7jPBwUZEXFlU64lSEOnzHLTA/mnjYDx0Ci7cIs2Ky7WPpC3EQ609NUsXTW17LWhUFfLx6t9wAwZwmtbY+8YmGflXcMo2F7pS01hNeGdjMidnbtT1EZacL/9rQCZB5dcs6izq9D9zR3bWxqU+Q0GdlhP7Vc1U071YHT6BMQebaCM1Gq8CL68jC8kdzFLq49wM9RE0yUhopnz0Olpz7mBnuc/3h3xhAn8eNyQJLCm2DFrjuaV
+        auth0Secret: AgA86PGaNfAT9Wm7ZkvPvcJi6fQtjpgT1WOm4aEkZCOYyQY3IuH/N2X0aRJ0AypiT8rRrD+BqhVq0MiaapQnF1fPeAqcNoHhCN9N8U2QXO724zL0oVyyGc1lIQshYNDtRpPP4oG5cJJFK6usMDJnQc6Rx10rBc2wLL+vnC8+1vKb3o95n5hrg6+OqA2MeV4HMD2dSBbUEE55biFChgPUHRdEsTvcPsa/ubqLd2DEid0JyYqtdYyDdc64UWf+2Fh4nJJCUiKrMmSAw2q4Y4a8ElG7GKRXPS8Q/6ynDRltLda4jaDVhqYYrbIZ8aZQKeP60cDUqElkPf4k0OE3/xVshOzsFaIfo3DPN9lL+9XVUOXxZvQRQ2HJvZmg5/5XGi7eXAncj1rsD3pl3ojG51UITy3Y0WhZ4JBayFFdKvNVHjOwTs5YZjr2ilqZ2kuR5S8qWHpGk65ZLdWj9Ph+0utEo3g5HTBCEt8h8MjQaeK63umF3DU5/eTJ3+QJ1DO0nEY43IBK6Jq+RfD40U4UCDiONN5dDDTcFmkaPzrwA1mzFvWvaJXRZ606nbwnQymZMe9u0j7oNhixtmhdwfDizalMIrlMBMp0uOanWHEgWupDSGcjtRMjt/lRja0Lacl7vwCe5imaqjFaX0nedxXF+tRKBiWQ4mqr/p8FsaZFRlj01q6rYUCA0JCNr7cQTdQa37Wdfoep9icQuL82Hpi7biQZUWg+86wowb+i48F5RKVkQWhrsOjBKF+2IABTy6BSnaX7WWwsTsZOR40FFrrBzsgbyKuR
+        mongodbPassword: AgB4d3gpvVQwUd3gHbZOYamFgmLzBoyNJ2CAg1WFjtL93cbF6ehsXZfvaqL9rc+gDI0hemfEZYvRCTqjhuIga9TauOJuVNgUh7vkUiSKHmSIakQL0XFCx86EojAI7SF8MnFV8n4HV9KL2kBT5cbVKcbXVwa6E19kMC65a43Q9WcUP2M8QDQXdWrv3pHwT1yHOFDOPOXINHWlkbx4McZ8bz+FYvtfCoNL8I+6L6YUqEtTYK+bZTRfdTYxl/pNz7+JdebcJX8JsLLw0XoIQx56XZNBOdiBXIE0K9/n+tVr6p3cSMSkA8C7tl8ywTU084+dsZ4mK1IhHK6ixtnOyqysqH0UPkd3e5mrQMI7vf7SExcYUNAw7GER8YVgE47PCQZ70HtiYuOlr4vs5r7eEAx++fr2X+ygoAvbDfXYOthe1iC6rYAcXVukFKEuLz5VDOHtzxw6BA/DfiS1t8yxL6My59XG0TU6pfJcdEIA+hSJ/36NzXIAi7+9Xv9UykGG6K7NzpjS7Gk1dSv3/9rJjOHP03Jw/98SoCbqBY1QD+Svos11wjFQCUo0orWaKjZp5moPRX2X9FskieEPD3QEAJ/nznzd54h/gGpbbB6Vs30sfDtL33QCX2s31Ky3eitimawS3093weJduBjrsmgrANR6Zxn7DTEdWmEk96yNCt//InA/Pq/mlUb+m1I1Kf9CQarOrOcLnvt8AwUzFkLKlUGpRpDu
+
+
+issuer:
+    name: letsencrypt-production-dev
+    # name: letsencrypt-staging #TODO
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: colin@thecodercareer.com
+
+ingress:
+    name: tcc-ingress-root-dev
+    ingressClassName: dev-class
+    rules:
+        - host: 
+            name: dev.thecodercareer.com
+            paths:
+                - path: 
+                    path: /
+                    name: web-portal
+                    port: 3000
+        - host: 
+            name: devapi.thecodercareer.com
+            paths:
+            - path: 
+                    path: /
+                    name: earl-bot
+                    port: 8080

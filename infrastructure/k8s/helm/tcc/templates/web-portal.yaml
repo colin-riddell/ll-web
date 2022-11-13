@@ -1,0 +1,65 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: {{ .Values.webportal.name}}-secrets
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+spec:
+  encryptedData:
+    AUTH0_CLIENT_SECRET: {{ .Values.webportal.encEnv.auth0ClientSecret }}
+    AUTH0_SECRET: {{ .Values.webportal.encEnv.auth0Secret}}
+    MONGODB_PASSWORD: {{ .Values.webportal.encEnv.mongodbPassword }}
+
+  template:
+    metadata:
+      creationTimestamp: null
+      name: {{ .Values.earlbot.name}}-secrets
+      namespace: {{ .Release.Namespace }}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.webportal.name }}"
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.webportal.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: "{{ .Values.webportal.name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.webportal.name }}"
+    spec:
+     containers:
+        - name: "{{ .Values.webportal.name }}"
+          image: "{{ .Values.webportal.deployment.image }}:{{ .Values.webportal.deployment.tag }}"
+          env:
+            {{- include "env.webportal" . | indent 12 -}}
+            # - name: BOT_TOKEN
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: secrets
+            #       key: bot_token
+            #       optional: false 
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.webportal.name }}"
+  namespace: {{ .Release.Namespace }}
+
+spec:
+  selector:
+      app: "{{ .Values.webportal.name }}"
+  ports:
+    - port: 3000

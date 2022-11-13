@@ -1,0 +1,9 @@
+environment = "localstack"
+region = "eu-west-2"
+access_key = "fake"
+secret_key = "fake"
+skip_credentials_validation = true
+skip_metadata_api_check     = true
+skip_requesting_account_id  = true
+dynamo_endpoint = "http://localhost:4566"
+role_arn = "arn:aws:iam::741309827656:role/DevelopmentAdmin"

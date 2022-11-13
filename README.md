@@ -1,53 +1,43 @@
-# TCC - Web Platform
+# The Coder Career - Community site + Jobs Platform
 
-## How do I
+> Copyright 2022 The Coder Career Ltd
+> Proprietary intellectual property belonging to The Coder Career
 
-### Run it locally
+This is the mono-repo for The Coder Career platform.
 
-* Make sure you've got the `.env.local` in the root of the project. (same level as this file, not the root of the repo)
-* Run the mongodb container (`docker-compose up` from this dir)
-* build and run with `yarn` then `yarn dev`
-* Have fun
+```
+.
+├── README.md                     ( this doc )
+├── docs                        
+├── earl-bot                     ( earl bot project)
+├── infrastructure          ( all k8s and tf for all services)
+└── web-portal                ( web portal project )
+```
 
-### Deploy to dev
-
-* build, tag and push the container image:
-  * `docker build -t web-portal  . `
-  * `docker tag web-portal:latest registry.digitalocean.com/tcc-registry/web-portal:0.0.4` incrementing the version to match the deployment
-  * `docker push registry.digitalocean.com/tcc-registry/web-portal:0.0.4`
-  * `cd ../infrastructure/k8s/helm/`
-  *  `helm upgrade  tcc-dev tcc --values ./values/development.yaml --namespace dev` Either update the version in development.yaml or set it on the command line with --set
-  *  check it in `k9s`
-
-### Deploy to prod
-Same as above but for prod values
-
-### Test it 
+With the exception of `docs` and `infrastructure` each directory in the repo is a project within The Coder Career stack. A project is built into a corresponding container image, and that image is run as container(s) on the cluster.
 
 
-## Useful links
+## Web Platform / Portal `./web-portal`
 
-* Next SSR
-  * https://nextjs.org/docs/basic-features/data-fetching/overview
-* Chakra 
-  * https://chakra-ui.com/
-  * https://chakra-templates.dev/
-  * https://chakra-ui.com/docs/components/media-and-icons/icon
-* Next MDX
-  * https://nextjs.org/docs/advanced-features/using-mdx (look at this for blog stuff?)
-  * https://nextjs.org/blog/markdown
-* Tailwind
-  * Typography Prose (for rendering HTML generated from MD): https://tailwindcss.com/docs/typography-plugin
-* Formik
-  * https://formik.org/
-  * Field: https://formik.org/docs/api/field
-  * Chakra + Formik: https://chakra-ui.com/docs/components/form/form-control
-* DynamoDB
-  * https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations_Amazon_DynamoDB.html
-  * Increment https://stackoverflow.com/questions/14077414/dynamodb-increment-a-key-value
-* Notion Blog on Next **TODO**
-  * https://github.com/samuelkraft/notion-blog-nextjs
-* AWS Amplify + deploy TF
-   * https://sreeraj.dev/setting-up-aws-amplify-for-a-next-js-ssr-app-with-terraform/
-   * https://www.youtube.com/watch?v=7PoKyVCTcS8
-   * or use next-tf module: https://github.com/milliHQ/terraform-aws-next-js
+
+The Web plaform is the main webapp for thecodercareer.com Serving the public facing website, and authed web-apps for TCC Community and TCC Hiring.
+
+Tech wise, the Web Platform is a Next.js app that has it's own front-end and back end.  
+
+
+To find out everything else about the Web Platform look in the [README](./web-portal/README.md) in the `./web-portal` project
+
+# Earl Bot `./earl-bot`
+
+Discord bot for the TCC Discord. The opportunities are limitless, but Earls primary function is to help community members connect their Discord profile to their TCC account (feature in development).
+
+Has a basic in-development API available under api.thecodercareer.com.
+
+To find out everything else about Earl Bot look at the 
+[README](./earl-bot/README.md) in the `./earl-bot` project.
+
+# Infrastucture `./infrastructure'
+
+Not a project, but the location of all the code that sets up infrastucture for The Coder Career lives here.
+
+More info in the infrastructure [README](./infrastructure/README.md) 

@@ -1,0 +1,52 @@
+namespace: default
+
+earlbot:
+    name: earl-bot
+    deployment:
+        image: "registry.digitalocean.com/tcc-registry/earl-bot"
+        tag: "0.0.1"
+        replicas: 1
+    env:
+        someVar: "some-value?withquotes?"
+    encEnv:
+        bot_token: AgBHc8wek52nsKy3rpG0E1HQrWMLqRwAYPRJs9pmVKwYe3NM2cffQunw/rQP1qP5nZKu6xiKdCStfrJ/tKUTKOKVpaEKo1qgJL1X7JiOWQO+JK/meQEyhA5sYQTaALOKghbYdIP0TNwPc1bgy8BYpjIkYqJwuFmfclGEjnLxOKa2NBZWTMwPOPjYEcPLyAbjOCsmODQC0bT7WquERJ9u1WYsu4H32hCY1n4/B9l6dwpzzeFLB1JxQso8dseLYf9nLChF4vU5XE7W5EF7jm+htdIztCg1Sxs92p2NCvLJ4IgJWDGg6tVQiSqJDvlA3JAB/jvzxqVaRyZyFj2fG/Doej34QTo7jhPtXX8W418w/80EJQ23K2GIMSc3J+d3wxJ7SIl90KU7frHQLw6YrwVgwuKqqeeFfaCrKHpXAbEwUT8r4BEewsfdfNUVNRN7oNzA3a8MIVZq1ej+Z7g61VOWrW4V3fEiPKRUEdkMZ6wXNeG5uozHSlu4CngHpr4uVoL5ehqxBuY6Su7mTYW5idf4LjvNoQcscmcgRNka2VGjRZIbHfDRNVIwoLmJ9PCNdA9sE+8fQn/TfdajpW/4tlohRClRvUUYgbXMYy4CTokT+sE6WbzkOS03QFy92f6LkUWJAdKXXEzBBIBWnxWChBqHRYzsvMRgStuTbwrwYO25Ex5PrybMfabdJ8Iol9QMTyQKxj5Q9YtyQwb5dtyKV17HgR5k9SqDuNBlJAQyOx4U4b+mA5CsLQ13Q92pckTLQTznI8ksYN4M2WrfvJiUmcYYEW6cNMUMh+Lb30M=
+
+webportal:
+    name: web-portal
+    deployment:
+        image: "registry.digitalocean.com/tcc-registry/web-portal"
+        tag: "latest"
+        replicas: 1
+    env:
+        auth0ClientId: ylFeCwqnvwMjfSL58yoOrgKE75Q34YjY
+        auth0BaseUrl: https://dev.caol.io
+        auth0IssuerBaseUrl: https://thecodercareer.eu.auth0.com
+    encEnv:
+        auth0ClientSecret: AgB5nmsPWRyAUqmE3eNvUXSiBiXjujbudq7AZ2q0bLetVkAZHOZsq5bhSnyRpqRwh3shyeKg9nBIS0QnO5HbnJn+JmfHB5eSAsQIlTevXh0PBNX0+2ZztfCEm/wsEZ1YkbSvb9tR+fmGbysy+2VwrPeOZBrW1HtQRnO+9bNtkdo3tMxQqH06wB5iY2CfmmN3S8Xh+M4pIcCocs2UELMap6LujCraq03YnpBNptrF2VeMpok2o3/SsBBBeUdCVLV3GzwQk2Sg/Ek70WmDCRru+7PRVoHwP2JePKKLGYkmluDd+5joTrhnpTXq7/SvKGut1S12cQGeTk5E3k+KedXQaWvdew5AaEIkliTcNcHITlXrZTyYqQodJ5ruXUAHQOV713f9DwVIX5t4Aeq0yWL4saKXb/vuyFnfUEgIs8KDxTztdfNk+I7Wh/dqUOBKj0F/rfMweJDyKb1YdiWvHzfituVmPANzibysg/s+4aUeIjjzredxKKUA13l2aAFDOdcuKpnVNGd8VPK16TxY2aBQqSZZNATCwpAB27dwmCLX3fImIT/ahLBitL2UL5Vp6/rFmZ0RXxAqCx9xqWYxwXiP20pFsS5d4v1QboTTCFkUYqijohpbd3wxMrfh9bv9mq1a9Fx0AP4mTmpWcSTKQgH81SdOYLevxeHDOPPCYA8mF9GxsjY4dS7s7wx8TwF2u6xIriuv7FFcuTVG+nLqu2txWylqPuPXlWg5/c+xFoVACyc+hu/Iq2Hf/Q5KZ+2NxbrsSuK1sKlZhemBmQpfj/o7ah7R
+        auth0Secret: AgCmWvk3WrCY5LyjL2qTxkPw9DeUwfi+e7YN/cgZqUmT2M62ftHjzGTR0U00tGHcqz9Q7EmWkqnRVkre665D9mH5ZWGnvxsr/D4wHT2CL2XiWQ8CUTt1mVLI+J2RudoojylEQIbwT/6wVXQvmfn3eOMxzhqqp7qA43rpf/s6vus8dNd8eC1DtQIhHJGFr8UKo+VmgSgeSm2BKagGw5SrSGKcD8P1NOu/jQtCdQGwxZ05/xjr1HOc4zOxw35649b/zEHARR14BEzU7WUHiIXLqkKplbEjiCcaOge75U7bFrgNCdHt+p/46h9FJz75Xzon1SyXdEPjIJXpfBrRNQse3/JFMd0XLpv0SJLBQytTSJYTFaWzRvbYoGHVzj5/XX454mAgsEAV90CN/eX21pWgJTKqMIxjjImZ1Tqbg8+SryByEhoM/3mbVFvZOMW2RQmBxeEmJkNXST5Ww8eW4Dtyk799LuVzTTAZQ5rb0SZGPUIxYRUwoL424LleDWD3LB6ktovhpV3o/4RBCclkVhSRHmLvvIMnMqGSO5xi/ZWvzHuCtKyMgb8L0h0PtHR5LxTh9iEhVWSgwa8q9ZFLSjMPRRcJK1spuDbqe+vGD8WEBd3xXlK7Nzp8/o/PBXx1A9ZsOow2YoOVMGvw8wYXd+eG5GN/8rQ0ZPXRUkVh9nLXm06QrRTp0dNX4ql3oZyRuCGOGQAYvCanK2spgN4P8vkBss81SxvPnt5KPg+y+wTcaUxP62r6T0R5d2eAtPnYjXCtOTaj8XqstTt8gRUjSV1ef3D0
+
+
+issuer:
+    name: letsencrypt-production
+    # name: letsencrypt-staging #TODO
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: colin@thecodercareer.com
+
+ingress:
+    name: tcc-ingress-root
+    rules:
+        - host: 
+            name: caol.io
+            paths:
+                - path: 
+                    path: /
+                    name: web-portal
+                    port: 3000
+        - host: 
+            name: earl.caol.io
+            paths:
+            - path: 
+                    path: /
+                    name: earl-bot
+                    port: 8080
